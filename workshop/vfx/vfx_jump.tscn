@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://behhecg0hs18"]
+
+[ext_resource type="Texture2D" uid="uid://bvpevvhiied60" path="res://assets/foxy/smoke/jump_smoke_1.png" id="1_nsyix"]
+[ext_resource type="Texture2D" uid="uid://dscfmk07sstk8" path="res://assets/foxy/smoke/jump_smoke_2.png" id="2_dt78j"]
+[ext_resource type="Texture2D" uid="uid://dd0sqkm8gqnjg" path="res://assets/foxy/smoke/jump_smoke_3.png" id="3_1d017"]
+[ext_resource type="Texture2D" uid="uid://cporyd1i4s10" path="res://assets/foxy/smoke/jump_smoke_4.png" id="4_gcu2p"]
+[ext_resource type="Script" uid="uid://cneyn6quqj30k" path="res://vfx/vfx_default_script.gd" id="5_nsyix"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cr0jn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nsyix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dt78j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1d017")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gcu2p")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Smoke" type="AnimatedSprite3D" unique_id=1140842345]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_cr0jn")
+frame = 3
+frame_progress = 1.0
+script = ExtResource("5_nsyix")

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bxci8t3hu184g"]
+
+[ext_resource type="Texture2D" uid="uid://ca3uk72ltyi3i" path="res://assets/items/coin/effect/01.png" id="1_lr1vh"]
+[ext_resource type="Texture2D" uid="uid://7815uhsg0yyi" path="res://assets/items/coin/effect/02.png" id="2_xb53p"]
+[ext_resource type="Texture2D" uid="uid://dua5jlj37y4u4" path="res://assets/items/coin/effect/03.png" id="3_72enf"]
+[ext_resource type="Script" uid="uid://cneyn6quqj30k" path="res://vfx/vfx_default_script.gd" id="5_iyd7d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cr0jn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lr1vh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xb53p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_72enf")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Disappear" type="AnimatedSprite3D" unique_id=1140842345]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_cr0jn")
+frame = 2
+frame_progress = 1.0
+script = ExtResource("5_iyd7d")

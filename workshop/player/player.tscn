@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://djfy7s5135qm8"]
+
+[ext_resource type="Script" uid="uid://b7nyx21hl4x00" path="res://player/player.gd" id="1_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://cwgjo8l0lmemi" path="res://assets/foxy/fox/fox_idle_1.png" id="2_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cdiupfoo5xr6u" path="res://assets/foxy/fox/fox_idle_2.png" id="3_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://bunb4hruykt3x" path="res://assets/foxy/fox/fox_jump_1.png" id="4_ebec5"]
+[ext_resource type="Texture2D" uid="uid://dowo3wvh7rdu1" path="res://assets/foxy/fox/fox_jump_2.png" id="5_yllr7"]
+[ext_resource type="Texture2D" uid="uid://ddf11anrulx6e" path="res://assets/foxy/fox/fox_walk_1.png" id="6_kb6p2"]
+[ext_resource type="Texture2D" uid="uid://bsfb723jv8ohi" path="res://assets/foxy/fox/fox_walk_2.png" id="7_wodsf"]
+[ext_resource type="Texture2D" uid="uid://bj3ls24dmb1u0" path="res://assets/foxy/fox/fox_walk_3.png" id="8_32hag"]
+[ext_resource type="Texture2D" uid="uid://c7b68c2t2m054" path="res://assets/foxy/fox/fox_walk_4.png" id="9_tqiix"]
+[ext_resource type="Script" uid="uid://b1hfn8gxuqeuf" path="res://scripts/State/state_machine.gd" id="10_2ieo8"]
+[ext_resource type="Script" uid="uid://b7kaxcd1q57ph" path="res://player/player_idle.gd" id="11_ebec5"]
+[ext_resource type="Script" uid="uid://dew6v7lbxk5nu" path="res://player/player_walk.gd" id="12_yllr7"]
+[ext_resource type="Script" uid="uid://cx1l3kubduecu" path="res://player/player_jump.gd" id="13_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://irnmtldt0n5y" path="res://assets/sounds/jump.mp3" id="14_kb6p2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cr0jn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8t03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2ieo8")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ebec5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yllr7")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kb6p2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wodsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_32hag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tqiix")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cr0jn"]
+height = 1.5878525
+
+[node name="Player" type="CharacterBody3D" unique_id=1994575818]
+script = ExtResource("1_hg6s5")
+jump_speed = 15.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=508154135]
+offset = Vector2(0, 14)
+pixel_size = 0.0625
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_cr0jn")
+animation = &"idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=368144063]
+transform = Transform3D(1.367, 0, 0, 0, 1.367, 0, 0, 0, 1.367, 0, 1.019294, 0)
+shape = SubResource("CapsuleShape3D_cr0jn")
+debug_color = Color(0.1839026, 0.91764385, 1.0224639, 1)
+
+[node name="PlayerState" type="Node" parent="." unique_id=547787559]
+script = ExtResource("10_2ieo8")
+
+[node name="Idle" type="Node" parent="PlayerState" unique_id=508894549]
+script = ExtResource("11_ebec5")
+
+[node name="Walk" type="Node" parent="PlayerState" unique_id=1922792595]
+script = ExtResource("12_yllr7")
+
+[node name="Jump" type="Node" parent="PlayerState" unique_id=1770847588]
+script = ExtResource("13_kb6p2")
+
+[node name="Jump" type="AudioStreamPlayer" parent="PlayerState/Jump" unique_id=201458733]
+stream = ExtResource("14_kb6p2")
+bus = &"SFX"
+
+[node name="VFX" type="Node3D" parent="." unique_id=938658866]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0)
+
+[node name="Jump" type="Marker3D" parent="VFX" unique_id=744920384]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0.01189352, 0)
