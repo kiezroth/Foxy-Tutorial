@@ -57,6 +57,8 @@ func get_input(delta: float) -> void:
 	else: 
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x,0.0,delta * friction)
+		else:
+			velocity.x = move_toward(velocity.x,0.0,delta * friction * 0.3)
 	if jump && is_on_floor():
 		var time_jump_started = Time.get_ticks_msec()
 		if time_jump_started - time_landed_started > double_jump_wind:
